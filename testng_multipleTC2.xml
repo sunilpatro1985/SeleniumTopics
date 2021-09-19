@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite11" verbose="1" >
+
+    <test name="Regression11"   >
+        <classes>
+            <class name="testNgLearning.multipletestngXml.TC2"/>
+        </classes>
+    </test>
+
+
+</suite>

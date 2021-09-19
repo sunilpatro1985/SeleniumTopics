@@ -34,10 +34,10 @@ public class ExceptionTest
 
         //driver.switchTo().frame("Frame3");
 
-        new WebDriverWait(driver, Duration.ofSeconds(5))
+        /*new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.presenceOfElementLocated(By.id("username1")));
         driver.findElement(By.id("username")).sendKeys("QAVBOX");
-
+*/
         Thread.sleep(1000);
         driver.quit();
     }

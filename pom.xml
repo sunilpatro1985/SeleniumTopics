@@ -57,6 +57,12 @@
                     <includes>
                         <include>*.*</include>
                     </includes>
+                    <!--properties>
+                        <property>
+                            <name>listener</name>
+                            <value>testNgLearning.listeners.TestNGListenerManager</value>
+                        </propert>
+                    </properties-->
                 </configuration>
             </plugin>
         </plugins>

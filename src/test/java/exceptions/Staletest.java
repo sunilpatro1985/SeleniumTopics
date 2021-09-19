@@ -18,11 +18,12 @@ public class Staletest
 
         driver = new ChromeDriver();
         driver.get("https://qavbox.github.io/demo/signup/");
-        /*WebElement username = driver.findElement(By.id("username"));
+        WebElement username = driver.findElement(By.id("username"));
         username.clear();
-        username.sendKeys("QAVBOX");*/
-        clear(driver, By.id("username"));
-        type(driver, By.id("username"), "QAVBOX");
+
+        username.sendKeys("QAVBOX");
+        //clear(driver, By.id("username"));
+        //type(driver, By.id("username"), "QAVBOX");
 
         //to-do
         //app got refreshed
