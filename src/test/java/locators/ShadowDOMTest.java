@@ -50,6 +50,61 @@ public class ShadowDOMTest {
         driver.quit();
     }
 
+    @Test
+    public void ShadowTest_SearchContext() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "/Users/skpatro/sel/chromedriver");
+        driver = new ChromeDriver();
+        driver.get("https://qavbox.github.io/demo/shadowDOM/");
+
+        js = (JavascriptExecutor) driver;
+        Thread.sleep(2000);
+        //js.executeScript("document.querySelector('my-open-component').shadowRoot.querySelector('input').value=\"qavboxOpen\"");
+        SearchContext el = getShadowRoot_SC("my-open-component", true);
+        //WebElement el = getShadowRoot("my-open-component", true);
+        el.findElement(By.cssSelector("input")).sendKeys("qavboxOpen");
+
+        Thread.sleep(2000);
+        //js.executeScript("document.querySelector('my-close-component')._root.querySelector('input').value=\"qavboxClose\"");
+        SearchContext closeEl = getShadowRoot_SC("my-close-component", false);
+        //closeEl.findElement(By.cssSelector("input")).sendKeys("qavboxClose");
+        WebElement closeChildel = closeEl.findElement(By.cssSelector("input"));
+        js.executeScript("arguments[0].value='qavboxClose'",closeChildel );
+
+
+        Thread.sleep(2000);
+        driver.quit();
+    }
+
+    @Test
+    public void ShadowTest_Sel4() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "/Users/skpatro/sel/chromedriver");
+        driver = new ChromeDriver();
+        driver.get("https://qavbox.github.io/demo/shadowDOM/");
+
+        js = (JavascriptExecutor) driver;
+        Thread.sleep(2000);
+        SearchContext el = driver.findElement(By.cssSelector("my-open-component")).getShadowRoot();
+        el.findElement(By.cssSelector("input")).sendKeys("qavboxOpen");
+
+        Thread.sleep(2000);
+        //js.executeScript("document.querySelector('my-close-component')._root.querySelector('input').value=\"qavboxClose\"");
+        SearchContext closeEl = getShadowRoot_SC("my-close-component", false);
+        //closeEl.findElement(By.cssSelector("input")).sendKeys("qavboxClose");
+        WebElement closeChildel = closeEl.findElement(By.cssSelector("input"));
+        js.executeScript("arguments[0].value='qavboxClose'",closeChildel );
+
+
+        Thread.sleep(2000);
+        driver.quit();
+    }
+
+    public SearchContext getShadowRoot_SC(String querySelectorHost, boolean isOpen){
+        if(isOpen){
+            return (SearchContext) (js.executeScript("return document.querySelector(\""+querySelectorHost+"\").shadowRoot"));
+        }else
+            return (SearchContext) (js.executeScript("return document.querySelector('"+querySelectorHost+"')._root"));
+    }
+
     public WebElement getShadowRoot(String querySelectorHost, boolean isOpen){
         if(isOpen){
             return (WebElement) (js.executeScript("return document.querySelector(\""+querySelectorHost+"\").shadowRoot"));
